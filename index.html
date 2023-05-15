@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Dish Delight</title>
+    <script
+      src="https://kit.fontawesome.com/64e5b5f9a4.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="logo">
+          <i class="fa-solid fa-bowl-food"></i>
+          <h1>Dish Delight</h1>
+        </div>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="./recipes.html">Recipes</a></li>
+          </ul>
+        </nav>
+
+        <div class="header--icons">
+          <!-- ------- DARK MODE------ -->
+          <label id="dark-change"></label>
+          <!-- ------------------------------ -->
+
+          <i class="fa-sharp fa-regular fa-bookmark"></i>
+          <span>Saved Recipes</span>
+        </div>
+      </header>
+      <article>
+        <!-- HERO -->
+        <section class="hero">
+          <div class="hero--card">
+            <h1>Find your favorite recipes</h1>
+
+            <div class="hero--search">
+              <i class="fa-solid fa-utensils"></i>
+              <input
+                type="text"
+                placeholder="Search for recipes"
+                id="search-bar"
+              />
+
+              <button id="search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
+            <p>Find and indulge in a feast of favorite and fresh recipes!</p>
+          </div>
+        </section>
+        <section class="section tab">
+          <div class="container">
+            <!-- <h1 class="section-heading">Popular Recipes</h1> -->
+            <div class="tab-list" aria-label="Meal type">
+              <button
+                class="tab-btn tab1"
+                aria-selected="true"
+                id="tab-1"
+                tabindex="0"
+                aria-controls="panel-1"
+              >
+                Breakfast
+              </button>
+              <button
+                class="tab-btn tab2"
+                aria-selected="false"
+                id="tab-1"
+                tabindex="-1"
+                aria-controls="panel-2"
+              >
+                Lunch
+              </button>
+              <button
+                class="tab-btn tab3"
+                aria-selected="false"
+                id="tab-1"
+                tabindex="-1"
+                aria-controls="panel-3"
+              >
+                Dinner
+              </button>
+              <button
+                class="tab-btn tab4"
+                aria-selected="false"
+                id="tab-1"
+                tabindex="-1"
+                aria-controls="panel-4"
+              >
+                Snack
+              </button>
+              <button
+                class="tab-btn tab5"
+                aria-selected="false"
+                id="tab-1"
+                tabindex="-1"
+                aria-controls="panel-5"
+              >
+                TeaTime
+              </button>
+            </div>
+            <div class="panel-list">
+              <div
+                class="tab tab-panel panel1"
+                id="panel-1"
+                aria-labelledby="tab-1"
+                tabindex="0"
+              >
+                <div class="grid-list">
+                  <div class="card skeleton-card">
+                    <div class="card-banner skeleton"></div>
+                    <div class="card-body">
+                      <div class="skeleton card-title"></div>
+                      <div class="skeleton card-text"></div>
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <figure class="card-media img-holder">
+                      <img
+                        src="https://images.unsplash.com/photo-1612182062966-c8fe45ecbf73?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+                        alt="Recipe name"
+                        width="200"
+                        height="200"
+                        loading="lazy"
+                        class="img-cover"
+                      />
+                    </figure>
+                    <div class="card-body">
+                      <h3 class="title-small">
+                        <a href="./detail.html" class="card-link"
+                          >Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Voluptatum facilis quod mollitia delectus dicta
+                          tempora sapiente hic cum at laborum sequi, ullam
+                          repellendus unde nulla quisquam sit, magni cumque
+                          ipsam.</a
+                        >
+                      </h3>
+                      <div class="meta-wrapper">
+                        <div class="meta-item">
+                          <i class="fa-regular fa-clock"></i>
+                          <!-- <span>Breakfast</span> -->
+                          <span class="label-medium">2 minutes</span>
+                        </div>
+                        <div
+                          class="icon-btn has-state removed"
+                          aria-label="Add to saved recipes"
+                        >
+                          <span aria-hidden="true"
+                            ><i class="fa-solid fa-bookmark"></i
+                          ></span>
+                          <span aria-hidden="true">
+                            <i class="fa-sharp fa-regular fa-bookmark"></i
+                          ></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <button class="btn btn-secondary">
+                  <a
+                    href="./recipes.html"
+                    class="btn btn-secondary label-large has-state"
+                    >Show more</a
+                  >
+                </button>
+              </div>
+              <div
+                class="tab-panel panel2 hidden"
+                id="panel-2"
+                aria-labelledby="tab-2"
+                tabindex="0"
+              >
+                Lunch
+              </div>
+              <div
+                class="tab-panel panel3 hidden"
+                id="panel-3"
+                aria-labelledby="tab-3"
+                tabindex="0"
+              >
+                Dinner
+              </div>
+              <div
+                class="tab-panel panel4 hidden"
+                id="panel-4"
+                aria-labelledby="tab-4"
+                tabindex="0"
+              >
+                Snack
+              </div>
+              <div
+                class="tab-panel panel5 hidden"
+                id="panel-5"
+                aria-labelledby="tab-5"
+                tabindex="0"
+              >
+                TeaTime
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- RECIPE SLIDER -->
+        <section
+          class="section slider-section"
+          aria-labelledby="slider-label-1"
+        >
+          <div class="container">
+            <h2 class="section-title headline-small" id="slider-label-1">
+              Latest Asian Recipes
+            </h2>
+            <div class="slider">
+              <ul class="slider-wrapper" data-slider-wrapper>
+                <li class="slider-item">
+                  <div class="card">
+                    <figure class="card-media img-holder">
+                      <img
+                        src="https://images.unsplash.com/photo-1612182062966-c8fe45ecbf73?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+                        alt="Recipe name"
+                        width="200"
+                        height="200"
+                        loading="lazy"
+                        class="img-cover"
+                      />
+                    </figure>
+                    <div class="card-body">
+                      <h3 class="title-small">
+                        <a href="./detail.html" class="card-link"
+                          >Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Voluptatum facilis quod mollitia delectus dicta
+                          tempora sapiente hic cum at laborum sequi, ullam
+                          repellendus unde nulla quisquam sit, magni cumque
+                          ipsam.</a
+                        >
+                      </h3>
+                      <div class="meta-wrapper">
+                        <div class="meta-item">
+                          <i class="fa-regular fa-clock"></i>
+                          <!-- <span>Breakfast</span> -->
+                          <span class="label-medium">2 minutes</span>
+                        </div>
+                        <div
+                          class="icon-btn has-state removed"
+                          aria-label="Add to saved recipes"
+                        >
+                          <span aria-hidden="true"
+                            ><i class="fa-solid fa-bookmark"></i
+                          ></span>
+                          <span aria-hidden="true">
+                            <i class="fa-sharp fa-regular fa-bookmark"></i
+                          ></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="slider-item">
+                  <div class="card">
+                    <figure class="card-media img-holder">
+                      <img
+                        src="https://images.unsplash.com/photo-1612182062966-c8fe45ecbf73?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+                        alt="Recipe name"
+                        width="200"
+                        height="200"
+                        loading="lazy"
+                        class="img-cover"
+                      />
+                    </figure>
+                    <div class="card-body">
+                      <h3 class="title-small">
+                        <a href="./detail.html" class="card-link"
+                          >Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Voluptatum facilis quod mollitia delectus dicta
+                          tempora sapiente hic cum at laborum sequi, ullam
+                          repellendus unde nulla quisquam sit, magni cumque
+                          ipsam.</a
+                        >
+                      </h3>
+                      <div class="meta-wrapper">
+                        <div class="meta-item">
+                          <i class="fa-regular fa-clock"></i>
+                          <!-- <span>Breakfast</span> -->
+                          <span class="label-medium">2 minutes</span>
+                        </div>
+                        <div
+                          class="icon-btn has-state removed"
+                          aria-label="Add to saved recipes"
+                        >
+                          <span aria-hidden="true"
+                            ><i class="fa-solid fa-bookmark"></i
+                          ></span>
+                          <span aria-hidden="true">
+                            <i class="fa-sharp fa-regular fa-bookmark"></i
+                          ></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="slider-item">
+                  <div class="card">
+                    <figure class="card-media img-holder">
+                      <img
+                        src="https://images.unsplash.com/photo-1612182062966-c8fe45ecbf73?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+                        alt="Recipe name"
+                        width="200"
+                        height="200"
+                        loading="lazy"
+                        class="img-cover"
+                      />
+                    </figure>
+                    <div class="card-body">
+                      <h3 class="title-small">
+                        <a href="./detail.html" class="card-link"
+                          >Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Voluptatum facilis quod mollitia delectus dicta
+                          tempora sapiente hic cum at laborum sequi, ullam
+                          repellendus unde nulla quisquam sit, magni cumque
+                          ipsam.</a
+                        >
+                      </h3>
+                      <div class="meta-wrapper">
+                        <div class="meta-item">
+                          <i class="fa-regular fa-clock"></i>
+                          <!-- <span>Breakfast</span> -->
+                          <span class="label-medium">2 minutes</span>
+                        </div>
+                        <div
+                          class="icon-btn has-state removed"
+                          aria-label="Add to saved recipes"
+                        >
+                          <span aria-hidden="true"
+                            ><i class="fa-solid fa-bookmark"></i
+                          ></span>
+                          <span aria-hidden="true">
+                            <i class="fa-sharp fa-regular fa-bookmark"></i
+                          ></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="slider-item">
+                  <div class="card">
+                    <figure class="card-media img-holder">
+                      <img
+                        src="https://images.unsplash.com/photo-1612182062966-c8fe45ecbf73?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+                        alt="Recipe name"
+                        width="200"
+                        height="200"
+                        loading="lazy"
+                        class="img-cover"
+                      />
+                    </figure>
+                    <div class="card-body">
+                      <h3 class="title-small">
+                        <a href="./detail.html" class="card-link"
+                          >Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Voluptatum facilis quod mollitia delectus dicta
+                          tempora sapiente hic cum at laborum sequi, ullam
+                          repellendus unde nulla quisquam sit, magni cumque
+                          ipsam.</a
+                        >
+                      </h3>
+                      <div class="meta-wrapper">
+                        <div class="meta-item">
+                          <i class="fa-regular fa-clock"></i>
+                          <!-- <span>Breakfast</span> -->
+                          <span class="label-medium">2 minutes</span>
+                        </div>
+                        <div
+                          class="icon-btn has-state removed"
+                          aria-label="Add to saved recipes"
+                        >
+                          <span aria-hidden="true"
+                            ><i class="fa-solid fa-bookmark"></i
+                          ></span>
+                          <span aria-hidden="true">
+                            <i class="fa-sharp fa-regular fa-bookmark"></i
+                          ></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="slider-item" data-slider-item>
+                  <a href="./recipes.html" class="load-more-card has-state">
+                    <span class="label-large">Show more</span>
+
+                    <span aria-hidden="true"
+                      ><i class="fa-solid fa-angles-right"></i
+                    ></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section
+          class="section slider-section"
+          aria-labelledby="slider-label-1"
+        >
+          <div class="container">
+            <h2 class="section-title headline-small" id="slider-label-1">
+              Latest French Recipes
+            </h2>
+            <div class="slider">
+              <ul class="slider-wrapper" data-slider-wrapper>
+                <li class="slider-item">
+                  <div class="card">
+                    <figure class="card-media img-holder">
+                      <img
+                        src="https://images.unsplash.com/photo-1612182062966-c8fe45ecbf73?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+                        alt="Recipe name"
+                        width="200"
+                        height="200"
+                        loading="lazy"
+                        class="img-cover"
+                      />
+                    </figure>
+                    <div class="card-body">
+                      <h3 class="title-small">
+                        <a href="./detail.html" class="card-link"
+                          >Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Voluptatum facilis quod mollitia delectus dicta
+                          tempora sapiente hic cum at laborum sequi, ullam
+                          repellendus unde nulla quisquam sit, magni cumque
+                          ipsam.</a
+                        >
+                      </h3>
+                      <div class="meta-wrapper">
+                        <div class="meta-item">
+                          <i class="fa-regular fa-clock"></i>
+                          <!-- <span>Breakfast</span> -->
+                          <span class="label-medium">2 minutes</span>
+                        </div>
+                        <div
+                          class="icon-btn has-state removed"
+                          aria-label="Add to saved recipes"
+                        >
+                          <span aria-hidden="true"
+                            ><i class="fa-solid fa-bookmark"></i
+                          ></span>
+                          <span aria-hidden="true">
+                            <i class="fa-sharp fa-regular fa-bookmark"></i
+                          ></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="slider-item">
+                  <div class="card">
+                    <figure class="card-media img-holder">
+                      <img
+                        src="https://images.unsplash.com/photo-1612182062966-c8fe45ecbf73?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+                        alt="Recipe name"
+                        width="200"
+                        height="200"
+                        loading="lazy"
+                        class="img-cover"
+                      />
+                    </figure>
+                    <div class="card-body">
+                      <h3 class="title-small">
+                        <a href="./detail.html" class="card-link"
+                          >Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Voluptatum facilis quod mollitia delectus dicta
+                          tempora sapiente hic cum at laborum sequi, ullam
+                          repellendus unde nulla quisquam sit, magni cumque
+                          ipsam.</a
+                        >
+                      </h3>
+                      <div class="meta-wrapper">
+                        <div class="meta-item">
+                          <i class="fa-regular fa-clock"></i>
+                          <!-- <span>Breakfast</span> -->
+                          <span class="label-medium">2 minutes</span>
+                        </div>
+                        <div
+                          class="icon-btn has-state removed"
+                          aria-label="Add to saved recipes"
+                        >
+                          <span aria-hidden="true"
+                            ><i class="fa-solid fa-bookmark"></i
+                          ></span>
+                          <span aria-hidden="true">
+                            <i class="fa-sharp fa-regular fa-bookmark"></i
+                          ></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="slider-item">
+                  <div class="card">
+                    <figure class="card-media img-holder">
+                      <img
+                        src="https://images.unsplash.com/photo-1612182062966-c8fe45ecbf73?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+                        alt="Recipe name"
+                        width="200"
+                        height="200"
+                        loading="lazy"
+                        class="img-cover"
+                      />
+                    </figure>
+                    <div class="card-body">
+                      <h3 class="title-small">
+                        <a href="./detail.html" class="card-link"
+                          >Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Voluptatum facilis quod mollitia delectus dicta
+                          tempora sapiente hic cum at laborum sequi, ullam
+                          repellendus unde nulla quisquam sit, magni cumque
+                          ipsam.</a
+                        >
+                      </h3>
+                      <div class="meta-wrapper">
+                        <div class="meta-item">
+                          <i class="fa-regular fa-clock"></i>
+                          <!-- <span>Breakfast</span> -->
+                          <span class="label-medium">2 minutes</span>
+                        </div>
+                        <div
+                          class="icon-btn has-state removed"
+                          aria-label="Add to saved recipes"
+                        >
+                          <span aria-hidden="true"
+                            ><i class="fa-solid fa-bookmark"></i
+                          ></span>
+                          <span aria-hidden="true">
+                            <i class="fa-sharp fa-regular fa-bookmark"></i
+                          ></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="slider-item">
+                  <div class="card">
+                    <figure class="card-media img-holder">
+                      <img
+                        src="https://images.unsplash.com/photo-1612182062966-c8fe45ecbf73?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+                        alt="Recipe name"
+                        width="200"
+                        height="200"
+                        loading="lazy"
+                        class="img-cover"
+                      />
+                    </figure>
+                    <div class="card-body">
+                      <h3 class="title-small">
+                        <a href="./detail.html" class="card-link"
+                          >Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Voluptatum facilis quod mollitia delectus dicta
+                          tempora sapiente hic cum at laborum sequi, ullam
+                          repellendus unde nulla quisquam sit, magni cumque
+                          ipsam.</a
+                        >
+                      </h3>
+                      <div class="meta-wrapper">
+                        <div class="meta-item">
+                          <i class="fa-regular fa-clock"></i>
+                          <!-- <span>Breakfast</span> -->
+                          <span class="label-medium">2 minutes</span>
+                        </div>
+                        <div
+                          class="icon-btn has-state removed"
+                          aria-label="Add to saved recipes"
+                        >
+                          <span aria-hidden="true"
+                            ><i class="fa-solid fa-bookmark"></i
+                          ></span>
+                          <span aria-hidden="true">
+                            <i class="fa-sharp fa-regular fa-bookmark"></i
+                          ></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="slider-item" data-slider-item>
+                  <a href="./recipes.html" class="load-more-card has-state">
+                    <span class="label-large">Show more</span>
+
+                    <span aria-hidden="true"
+                      ><i class="fa-solid fa-angles-right"></i
+                    ></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-tag" aria-labelledby="tag-label">
+          <div class="container">
+            <h2 class="section-title display-small" id="">
+              Choose your health preferences
+            </h2>
+          </div>
+        </section>
+      </article>
+    </main>
+    <script src="./js/app.js"></script>
+    <script src="./js/global.js"></script>
+    <!-- <script>
+      src = "";
+    </script> -->
+  </body>
+</html>
