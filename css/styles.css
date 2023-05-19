@@ -331,12 +331,14 @@ header {
 }
 
 .img-holder {
-  background-color: red;
-  background-image: url("https://images.unsplash.com/photo-1559311648-d46f5d8593d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1750&q=80");
+  background-color: grey;
+  /* background-image: url("https://images.unsplash.com/photo-1559311648-d46f5d8593d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1750&q=80"); */
   background-size: 30%;
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
+  border-radius: 15px;
+  /* gap: 12px; */
 }
 
 .img-cover {
@@ -402,6 +404,12 @@ header {
   opacity: 0;
 } */
 
+.card:not(:has(.skeleton)) {
+  animation: fade-in 500ms grey forwards;
+  /* transform: translateY(30px); */
+  /* opacity: 0; */
+}
+
 @keyframes fade-in {
   0% {
     transform: translateY(30px);
@@ -456,7 +464,7 @@ card-link:where(:hover, :focus-visible) {
   gap: 8px;
 }
 .card .meta-item i {
-  font-size: 1.8rem;
+  font-size: 1.2rem;
 }
 .saved .fa-bookmark,
 .removed .fa-bookmark {
@@ -468,7 +476,18 @@ card-link:where(:hover, :focus-visible) {
   color: #f1660f;
   font-variation-settings: "FILL" 1;
 }
+
 /* ----- RECIPE SLIDER----------- */
+.slider-section {
+  margin-block: 30px 20px;
+}
+
+.slider-section h2 {
+  margin-block-end: 12px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f1660f;
+}
 
 .slider {
   gap: 8px;
@@ -476,8 +495,8 @@ card-link:where(:hover, :focus-visible) {
   overflow-x: auto;
   scroll-snap-type: inline mandatory;
   scroll-behavior: smooth;
-  /* -webkit-overflow-scrolling: touch; */
-  /* -webkit-overflow-scrolling: auto; */
+  /* -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: auto; */
   padding-block-end: 5px;
 }
 
@@ -495,17 +514,17 @@ card-link:where(:hover, :focus-visible) {
 .slider-wrapper {
   display: flex;
   align-items: stretch;
-  gap: 8px;
+  gap: 12px;
   transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .slider-item {
-  min-width: calc(50% - 4px);
+  min-width: calc(25% - 4px);
   scroll-snap-align: start;
 }
 
 .load-more-card {
-  height: 100%;
+  height: 80%;
   max-width: 100%;
   background-color: #ccc;
   border-radius: 5px;
@@ -514,6 +533,38 @@ card-link:where(:hover, :focus-visible) {
   justify-content: center;
   align-items: center;
   gap: 8px;
+}
+
+/* ------Tag-list------ */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-block-start: 24px;
+}
+.tag-list a {
+  /* display: block; */
+  display: grid;
+  place-items: center;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background-color: peachpuff;
+  color: #f1660f;
+  /* font-size: 0.8rem; */
+  margin-inline-end: 8px;
+  margin-block-end: 8px;
+  max-width: max-content;
+}
+
+.tag {
+  text-align: center;
+}
+
+.tag .section-text {
+  max-width: 50ch;
+  margin-inline: auto;
 }
 
 /* --------------DARK MODE STYLES--- */
