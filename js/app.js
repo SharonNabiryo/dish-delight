@@ -129,10 +129,60 @@ const addTabContent = (currentTabBtn, currentActivePanel) => {
       // console.log(data);
       currentActivePanel.innerHTML = "";
       for (let i = 0; i < 12; i++) {
-        //const { url, label, image, totalTime } = data.hits[i].recipe; // }
         const {
           recipe: { image, label: title, totalTime: cookingTime, uri },
         } = data.hits[i];
+
+        // const recipeId = uri.slice(uri.lastIndexOf("_") + 1);
+        const recipeId = uri && uri.substring(uri.lastIndexOf("_") + 1);
+
+        const ROOT = "https://api.edamam.com/api/recipes/v2";
+
+        const savedRecipes = window.localStorage.getItem(
+          `dishdelight-recipes${recipeId}`
+        );
+        // window.saveRecipe = function (element, recipeId) {
+        //   // const savedRecipes = window.localStorage.getItem(
+        //   //   `dishdelight-recipes${recipeId}`
+        //   // );
+        //   apiUrl = `${ROOT}/${recipeId}`;
+        //   if (savedRecipes) {
+        //     fetchRecipes(cardQueries, function (data) {
+        //       window.localStorage.setItem(
+        //         `dishdelight-recipes${recipeId}`,
+        //         JSON.stringify(data)
+        //       );
+        //       element.classList.toggle("saved");
+        //       element.classList.toggle("removed");
+        //     });
+        //     apiUrl = ROOT;
+        //   } else {
+        //     window.localStorage.removeItem(`dishdelight-recipes${recipeId}`);
+        //     element.classList.toggle("saved");
+        //     element.classList.toggle("removed");
+        //   }
+        // };
+
+        function toggleFavorite(element) {
+          element.classList.toggle("saved");
+          element.classList.toggle("removed");
+        }
+
+        function handleClick(event, element, recipeId) {
+          event.stopPropagation();
+          toggleFavorite(element);
+
+          if (element.classList.contains("saved")) {
+            fetchRecipes(cardQueries, function (data) {
+              window.localStorage.setItem(
+                `dishdelight-recipes${recipeId}`,
+                JSON.stringify(data)
+              );
+            });
+          } else {
+            window.localStorage.removeItem(`dishdelight-recipes${recipeId}`);
+          }
+        }
 
         const card = document.createElement("div");
         card.classList.add("card");
@@ -151,32 +201,42 @@ const addTabContent = (currentTabBtn, currentActivePanel) => {
                     </figure>
                     <div class="card-body">
                       <h3 class="title-small">
-                        <a href="./detail.html" class="card-link"
-                          >${title ?? "Untitled"}</a
-                        >
+                        <a href="./detail.html?recipe=${recipeId}" class="card-link"
+                          >${title ?? "Untitled"}</a>
                       </h3>
                       <div class="meta-wrapper">
                         <div class="meta-item">
                           <i class="fa-regular fa-clock"></i>
                           <!-- <span>Breakfast</span> -->
                           <span class="label-medium">${
-                            cookingTime || ""
-                          }</span><span class="label-medium">min</span>
+                            getTime(cookingTime).time || "<1"
+                          } ${getTime(cookingTime).timeUnit}</span>
+                        
                         </div>
-                        <div
+                        <button ${savedRecipes ? "saved" : "removed"}
                           class="icon-btn has-state removed"
-                          aria-label="Add to saved recipes"
-                        >
-                          <span aria-hidden="true"
-                            ><i class="fa-solid fa-bookmark"></i
-                          ></span>
-                          <span aria-hidden="true">
-                            <i class="fa-sharp fa-regular fa-bookmark"></i
-                          ></span>
-                        </div>
+                          aria-label="Add to saved recipes">
+                        
+                            <i class="fa-regular fa-heart"></i>
+                       
+                        </button>
                       </div>
                     </div>
         `;
+        const cardLink = card.querySelector(".card-link");
+        card.addEventListener("click", function (event) {
+          if (event.target.closest(".icon-btn")) {
+            // Clicked on the heart button
+            handleClick(
+              event,
+              event.target.closest(".icon-btn"),
+              "${recipeId}"
+            );
+          } else {
+            // Clicked on the card, excluding the heart button
+            window.location.href = `./detail.html?recipe=${recipeId}`;
+          }
+        });
 
         gridList.appendChild(card);
       }
@@ -197,21 +257,103 @@ const addTabContent = (currentTabBtn, currentActivePanel) => {
 };
 addTabContent(lastActiveBtn, lastActivePanel);
 
-// addEventOnElements(tabBtns, "click", () => {
-//   lastActivePanel.classList("hidden", "");
-//   lastActiveBtn.setAttribute("aria-selected", "false");
-//   lastActiveBtn.setAttribute("tabindex", "-1");
+const getTime = (minute) => {
+  const hour = Math.floor(minute / 60);
+  const day = Math.floor(hour / 24);
 
-//   const currentActivePanel = document.querySelector(
-//     `${this.getAttribute("aria-controls")}`
-//   );
-//   currentActivePanel.classList.remove("hidden");
-//   this.setAttribute("aria-selected", "true");
-//   this.setAttribute("tabindex", "0");
+  const time = day || hour || minute;
+  const unitIndex = [day, hour, minute].lastIndexOf(time);
+  const timeUnit = ["days", "hours", "minutes"][unitIndex];
 
-//   lastActivePanel = currentActivePanel;
-//   lastActiveBtn = this;
-// });
+  return { time, timeUnit };
+};
+
+// fetch data for slider cards
+
+let cuisineType = ["Asian", "French"];
+
+const sliderSections = document.querySelectorAll("[data-slider-section]");
+
+for (const [index, sliderSection] of sliderSections.entries()) {
+  sliderSection.innerHTML = `
+  <div class="container">
+ <h2 class="section-title headline-small" id="slider-label-1">Latest ${
+   cuisineType[index]
+ } Recipes</h2>
+             <div class="slider">
+              <ul class="slider-wrapper" data-slider-wrapper>
+              ${`<li class="slider-item">${skeletonCard}</li>`.repeat(10)}
+              </ul>
+ </div>
+  `;
+
+  const sliderWrapper = sliderSection.querySelector("[data-slider-wrapper]");
+
+  fetchRecipes(
+    [["cuisineType", cuisineType[index].toLowerCase()], ...cardQueries],
+    function (data) {
+      sliderWrapper.innerHTML = " ";
+
+      data.hits.map((item) => {
+        const {
+          recipe: { image, label: title, totalTime: cookingTime, uri },
+        } = item;
+
+        // const recipeId = uri.slice(uri.lastIndexOf("_") + 1);
+        const recipeId = uri && uri.substring(uri.lastIndexOf("_") + 1);
+
+        const sliderItem = document.createElement("li");
+        sliderItem.classList.add("slider-item");
+
+        sliderItem.innerHTML = `
+<div class="card">
+<figure class="card-media img-holder">
+                      <img
+                        src="${image}"
+                        alt="${title}"
+                        width="195"
+                        height="195"
+                        loading="lazy"
+                        class="img-cover"
+                      />
+                    </figure>
+                    <div class="card-body">
+                      <h3 class="title-small">
+                        <a href="./detail.html?recipe=${recipeId}" class="card-link"
+                          >${title ?? "Untitled"}</a
+                        >
+                      </h3>
+                      <div class="meta-wrapper">
+                        <div class="meta-item">
+                          <i class="fa-regular fa-clock"></i>
+                          <!-- <span>Breakfast</span> -->
+                          <span class="label-medium">${
+                            getTime(cookingTime).time || "<1"
+                          } ${getTime(cookingTime).timeUnit}</span>
+                        
+                        </div>
+                       
+                      </div>
+                    </div>
+</div>
+`;
+
+        sliderWrapper.appendChild(sliderItem);
+      });
+
+      sliderWrapper.innerHTML += ` <li class="slider-item" data-slider-item>
+                  <a href="./recipes.html?cuisineType=${cuisineType[
+                    index
+                  ].toLowerCase()}" class="load-more-card has-state">
+                    <span class="label-large">Show more</span>
+                    <span aria-hidden="true"
+                      ><i class="fa-solid fa-angles-right"></i
+                    ></span>
+                  </a>
+                </li> `;
+    }
+  );
+}
 
 // -------------DARK MODE
 const content = document.getElementsByTagName("body")[0];

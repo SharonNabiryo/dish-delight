@@ -466,16 +466,28 @@ card-link:where(:hover, :focus-visible) {
 .card .meta-item i {
   font-size: 1.2rem;
 }
-.saved .fa-bookmark,
-.removed .fa-bookmark {
+
+/* .fa-solid .fa-heart {
   display: none;
+} */
+
+/* .fa-solid {
+  display: none;
+} */
+
+.removed {
+  color: black; /* or any regular color */
 }
 
-.saved .fa-bookmark {
-  display: block;
-  color: #f1660f;
-  font-variation-settings: "FILL" 1;
+.saved {
+  background-color: red; /* or any favorite color */
 }
+
+/* .saved .fa-heart {
+  display: block;
+  color: red;
+  font-variation-settings: "FILL" 1;
+} */
 
 /* ----- RECIPE SLIDER----------- */
 .slider-section {
