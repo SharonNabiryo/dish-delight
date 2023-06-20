@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All recipes</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/64e5b5f9a4.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <i class="fa-solid fa-bowl-food"></i>
+        <h1>Dish Delight</h1>
+      </div>
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="#">Recipes</a></li>
+        </ul>
+      </nav>
+
+      <div class="header--icons">
+        <!-- ------- DARK MODE------ -->
+        <label id="dark-change"></label>
+        <!-- ------------------------------ -->
+      </div>
+    </header>
+    <main>
+      <article class="article recipe-page">
+        <div class="filter-bar" data-filter-bar>
+          <div class="title-wrapper">
+            <span aria-hidden="true"><i class="fa-solid fa-list"></i></span>
+            <p class="title-medium">Filters</p>
+
+            <button
+              class="close-btn has-state"
+              aria-label="Close filter bar"
+              data-filter-toggler
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <div class="filter-content">
+            <div class="search-wrapper">
+              <div class="input-outlined">
+                <label for="search" class="body-large label"></label>
+
+                <input
+                  type="search"
+                  class="input-field"
+                  name="search"
+                  id="search"
+                  class="input"
+                  placeholder="Search recipes"
+                />
+              </div>
+            </div>
+
+            <div class="accordion-container" data-accordion>
+              <button
+                class="accordion-btn has-state"
+                aria-controls="cook-time"
+                aria-expanded="false"
+                data-accordion-btn
+              >
+                <i class="fa-regular fa-clock"></i>
+                <p class="label-large">Cooking Time</p>
+                <i class="fa-solid fa-angle-down"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <script src="./js/recipes.js"></script>
+    <script src="./js/global.js"></script>
+  </body>
+</html>

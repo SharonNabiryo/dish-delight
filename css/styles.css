@@ -132,6 +132,12 @@ table {
   box-sizing: border-box;
 }
 
+button {
+  border: none;
+  overflow: hidden;
+  background-color: transparent;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -579,8 +585,54 @@ card-link:where(:hover, :focus-visible) {
   margin-inline: auto;
 }
 
+.snackbar-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  z-index: 100;
+  /* bottom: calc(100% + 20px); */
+}
+
+.snackbar {
+  /* position: relative; */
+  height: 48px;
+  width: 100%;
+  background-color: rgb(47, 41, 41);
+  color: #fff;
+  border-radius: 10px;
+  padding-inline: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 10px #000;
+  border-radius: 10px;
+  animation: snackbar 3s ease-in-out forwards;
+  text-align: center;
+}
+
+@keyframes snackbar {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  10%,
+  95% {
+    height: 48px;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 /* --------------DARK MODE STYLES--- */
-label {
+#dark-change {
   /* position: absolute; */
   width: 45px;
   height: 26px;
@@ -590,7 +642,7 @@ label {
   border-radius: 20px;
 }
 
-label:before {
+#dark-change:before {
   position: absolute;
   content: "";
   width: 20px;
@@ -603,7 +655,7 @@ label:before {
   transition: 0.3s;
 }
 
-label.active:before {
+#dark-change.active:before {
   left: 19px;
   background: white;
 }

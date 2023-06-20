@@ -154,21 +154,25 @@ const addTabContent = (currentTabBtn, currentActivePanel) => {
         //       );
         //       element.classList.toggle("saved");
         //       element.classList.toggle("removed");
+        //        showNotification("Recipe saved")
         //     });
         //     apiUrl = ROOT;
         //   } else {
         //     window.localStorage.removeItem(`dishdelight-recipes${recipeId}`);
         //     element.classList.toggle("saved");
         //     element.classList.toggle("removed");
+        //  showNotification("Recipe unsaved");
         //   }
         // };
 
         function toggleFavorite(element) {
           element.classList.toggle("saved");
           element.classList.toggle("removed");
+          // showNotification()
         }
 
-        function handleClick(event, element, recipeId) {
+        function handleHeartButtonClick(event, element, recipeId) {
+          event.preventDefault();
           event.stopPropagation();
           toggleFavorite(element);
 
@@ -189,6 +193,7 @@ const addTabContent = (currentTabBtn, currentActivePanel) => {
         card.style.animationDelay = `${100 * i}ms`;
 
         card.innerHTML = `
+    
          <figure class="card-media img-holder">
                       <img
                         src="${image}"
@@ -198,7 +203,7 @@ const addTabContent = (currentTabBtn, currentActivePanel) => {
                         loading="lazy"
                         class="img-cover"
                       />
-                    </figure>
+          </figure>
                     <div class="card-body">
                       <h3 class="title-small">
                         <a href="./detail.html?recipe=${recipeId}" class="card-link"
@@ -207,35 +212,34 @@ const addTabContent = (currentTabBtn, currentActivePanel) => {
                       <div class="meta-wrapper">
                         <div class="meta-item">
                           <i class="fa-regular fa-clock"></i>
-                          <!-- <span>Breakfast</span> -->
+                         
                           <span class="label-medium">${
                             getTime(cookingTime).time || "<1"
                           } ${getTime(cookingTime).timeUnit}</span>
-                        
                         </div>
-                        <button ${savedRecipes ? "saved" : "removed"}
-                          class="icon-btn has-state removed"
-                          aria-label="Add to saved recipes">
-                        
-                            <i class="fa-regular fa-heart"></i>
-                       
-                        </button>
+                          <span ${
+                            savedRecipes ? "saved" : "removed"
+                          } class="icon-btn has-state removed" >
+                           <i class="fa-regular fa-heart"></i>
+                             </span>
                       </div>
-                    </div>
+                             
+                    </div>   
+      
         `;
+
+        //         card.innerHTML = `
+        //   <div>${cardInnerHtml}</div>
+        // `;
         const cardLink = card.querySelector(".card-link");
-        card.addEventListener("click", function (event) {
-          if (event.target.closest(".icon-btn")) {
-            // Clicked on the heart button
-            handleClick(
-              event,
-              event.target.closest(".icon-btn"),
-              "${recipeId}"
-            );
-          } else {
-            // Clicked on the card, excluding the heart button
-            window.location.href = `./detail.html?recipe=${recipeId}`;
-          }
+        const heartButton = card.querySelector(".icon-btn");
+
+        cardLink.addEventListener("click", function (event) {
+          event.stopPropagation();
+        });
+
+        heartButton.addEventListener("click", function (event) {
+          handleHeartButtonClick(event, this, "${recipeId}");
         });
 
         gridList.appendChild(card);
@@ -353,6 +357,25 @@ for (const [index, sliderSection] of sliderSections.entries()) {
                 </li> `;
     }
   );
+}
+
+//------------snackbar-container----------------
+const snackbarContainer = document.createElement("div");
+snackbarContainer.classList.add("snackbar-container");
+document.body.appendChild(snackbarContainer);
+
+function showNotification(message) {
+  const snackbar = document.createElement("div");
+  snackbar.classList.add("snackbar");
+  snackbar.innerHTML = `<p class="body-medium">${message}</p>`;
+  snackbarContainer.appendChild(snackbar);
+  snackbar.addEventListener("animationend", (e) => {
+    snackbarContainer.removeChild(snackbar);
+  });
+
+  setTimeout(() => {
+    snackbar.remove();
+  }, 3000);
 }
 
 // -------------DARK MODE
